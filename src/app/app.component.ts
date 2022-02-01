@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+
+import { TodoScam } from './todo/todo.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
+  template: `<app-todo></app-todo>`,
 })
-export class AppComponent {
-  title = 'ng-mocks-sandbox';
-}
+export class AppComponent {}
+
+@NgModule({
+  declarations: [AppComponent],
+  exports: [AppComponent],
+  imports: [TodoScam],
+})
+export class AppScam {}
