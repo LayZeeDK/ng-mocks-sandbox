@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MockProvider, ngMocks } from 'ng-mocks';
+import { MockInstance, ngMocks } from 'ng-mocks';
 import { EMPTY } from 'rxjs';
 
 import { TodoComponent } from './todo.component';
@@ -15,13 +15,10 @@ describe(TodoComponent.name, () => {
   });
 
   beforeEach(() => {
+    MockInstance(TodoService, 'list$', () => EMPTY);
+
     TestBed.configureTestingModule({
       declarations: [TodoComponent],
-      providers: [
-        MockProvider(TodoService, {
-          list$: () => EMPTY,
-        }),
-      ],
     });
     fixture = TestBed.createComponent(TodoComponent);
     component = fixture.componentInstance;
