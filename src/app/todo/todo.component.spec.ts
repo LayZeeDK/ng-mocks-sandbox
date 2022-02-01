@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ngMocks } from 'ng-mocks';
+import { MockProvider, ngMocks } from 'ng-mocks';
 import { EMPTY } from 'rxjs';
 
 import { TodoComponent } from './todo.component';
@@ -9,7 +9,7 @@ describe(TodoComponent.name, () => {
   beforeAll(() => {
     ngMocks.autoSpy('jasmine');
     ngMocks.defaultMock(TodoService, () => ({
-      list$: jasmine.createSpy('list$').and.returnValue(EMPTY),
+      getTodos: jasmine.createSpy('getTodos').and.returnValue(EMPTY),
     }));
   });
 
@@ -20,6 +20,7 @@ describe(TodoComponent.name, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoComponent],
+      providers: [MockProvider(TodoService)],
     });
     fixture = TestBed.createComponent(TodoComponent);
     component = fixture.componentInstance;

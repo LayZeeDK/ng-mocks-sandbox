@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,6 +7,6 @@ import { AppComponent, AppScam } from './app.component';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AppScam],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, AppScam],
 })
 export class AppModule {}

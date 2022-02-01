@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 
-import { Todo } from './todo';
+import { Todos } from './todo';
 import { TodoService } from './todo.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-todo',
   styles: [
     `
@@ -16,14 +15,14 @@ import { TodoService } from './todo.service';
   template: `<p>todo works!</p>`,
 })
 export class TodoComponent implements OnInit {
-  public list: Todo[] = [];
+  public list: Todos = [];
 
   constructor(protected service: TodoService) {}
 
   ngOnInit(): void {
     // Never do like that.
     // It is just for the demonstration purposes.
-    this.service.list$().subscribe((list) => (this.list = list));
+    this.service.getTodos().subscribe((list) => (this.list = list));
   }
 }
 

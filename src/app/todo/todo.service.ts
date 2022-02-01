@@ -1,15 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { asyncScheduler, BehaviorSubject, Observable, scheduled } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { Todo } from './todo';
+import { Todos } from './todo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  #list = new BehaviorSubject([]);
+  constructor(private http: HttpClient) {}
 
-  list$(): Observable<Todo[]> {
-    return scheduled(this.#list, asyncScheduler);
+  getTodos(): Observable<Todos> {
+    return this.http.get<Todos>('/todos');
   }
 }
